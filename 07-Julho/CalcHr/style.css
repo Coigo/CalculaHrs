@@ -22,6 +22,7 @@
     }
     
     .botao{
+    border-radius: 5px;
     width: 50px;
     height: 50px;
     font-size: 25px;
@@ -30,6 +31,31 @@
     background-color: rgb(31, 31, 31);
     border: none;
     color: white;
+    }
+
+    .operacao {
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        cursor: pointer;
+        margin: 3px;
+        background-color: rgb(31, 31, 31);
+        border: none;
+        color: rgb(240, 133, 12);
+
+    }
+    .funcionais {
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+        font-size: 25px;
+        cursor: pointer;
+        margin: 3px;
+        background-color: rgb(240, 133, 12);
+        border: none;
+        color: rgb(43, 43, 43)
+
     }
     
     hr {
@@ -53,6 +79,8 @@
     }
     
     #resultado{
+        border-radius: 5px;
+        border: 0px;
     width: 272px;
     background-color: white;
     height: 30px;
@@ -77,7 +105,7 @@
         color: white;
         font-size: 15px;
     }
-    .exclui-historico:hover {
+    .exclui-historico:hover  {
         background-color: white;
         color: #159C8C;;
     }
@@ -88,3 +116,8 @@
         text-decoration: none;
         list-style: none;
     }
+    #bodyhistorico {
+        min-height: 100px;
+
+    }
+
