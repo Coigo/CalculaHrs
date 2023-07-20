@@ -26,9 +26,9 @@ function adicionar(num) {
 }
 
 function limpar() {
-  const paraLimpar = ['resultado', 'valor1', 'valor2', 'operacao'];
-  for (let i = 0; i < paraLimpar.length; i++) {
-    document.getElementById(paraLimpar[i]).value = '';
+  const ValoresParaLimpar = ['resultado', 'valor1', 'valor2', 'operacao'];
+  for (valor of ValoresParaLimpar) {
+    document.getElementById(valor).value = '';
   }
 }
 
@@ -132,3 +132,53 @@ function comecarNovoCalculo(resultado) {
   
 
 }
+
+function LiberarVirgula() {
+  const ponto = document.getElementById('ponto')
+  ponto.disabled = false
+
+}
+
+function LimparHistorico() {
+  const Childs = document.getElementsByTagName('li')
+  const Historico = document.getElementById('list')
+  while ( Childs.length > 0 ) [
+    Historico.removeChild(Childs[0])
+
+  ]
+  
+
+}
+
+function diasTrabalhados() {
+  let horas = document.getElementById('resultado').value;
+  let HorasTrabalhadasPorDia = '08:00'
+
+  HorasTrabalhadasPorDia = HorasTrabalhadasPorDia.split(":")
+  let minutosPorDia = parseInt(HorasTrabalhadasPorDia[0]) * 60 + parseInt(HorasTrabalhadasPorDia[1])
+
+  horas = horas.split(":")
+  let minutos = parseInt(horas[0]) * 60 + parseInt(horas[1])
+
+  Dias = minutos / minutosPorDia
+  Dias = Dias.toFixed(2)
+
+
+
+
+  adicionarAoHistorico(Dias)
+
+}
+
+function AdicionalNoturno() {
+  let horas = document.getElementById('resultado').value
+  horas = horas.split(":")
+  let minutos = parseInt(horas[0]) * 60 + parseInt(horas[1])
+  
+  horasAdicionadas = minutos / 0.80 /60
+  horasAdicionadas = horasAdicionadas.toFixed(2)
+comecarNovoCalculo(horasAdicionadas)
+
+
+}
+
