@@ -21,41 +21,36 @@
                     <td><button class="botao" onclick="adicionar('7')">7</button></td>
                     <td><button class="botao" onclick="adicionar('8')">8</button></td>
                     <td><button class="botao" onclick="adicionar('9')">9</button></td>
-                    <td><button class="botao" onclick="addOperacao('/')">/</button></td>
-                    <td><button class="botao" onclick="limpar()">C</td>
+                    <td><button class="operacao" onclick="addOperacao('/'), LiberarVirgula()">/</button></td>
+                    <td><button class="funcionais" onclick="limpar()">C</td>
                     </tr>
                     <tr>
                         <td><button class="botao" onclick="adicionar('4')">4</button></td>
                         <td><button class="botao" onclick="adicionar('5')">5</button></td>
                         <td><button class="botao" onclick="adicionar('6')">6</button></td>
-                        <td><button class="botao" onclick="addOperacao('*')">*</button></td>
-                        <td><button class="botao" onclick="voltar()"><</td>
+                        <td><button class="operacao" onclick="addOperacao('*'), LiberarVirgula()">*</button></td>
+                        <td><button class="funcionais" onclick="voltar()"><</td>
                         </tr>
                         <tr>
                             <td><button class="botao" onclick="adicionar('1')">1</button></td>
                             <td><button class="botao" onclick="adicionar('2')">2</button></td>
                             <td><button class="botao" onclick="adicionar('3')">3</button></td>
-                            <td><button class="botao" onclick="addOperacao('-')">-</button></td>
-                            <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+                            <td><button class="operacao" onclick="addOperacao('-')">-</button></td>
+                            <td rowspan="2"><button class="funcionais" style="height: 106px;" onclick="calcular()">=</button></td>
                         </tr>
                         <tr>
+                            <td><button class="botao" id="ponto" disabled="true" onclick="adicionar('.')">.</button></td>
                             <td><button class="botao" onclick="adicionar('0')">0</button></td>
-                            <td><button class="botao" onclick="adicionar('.')">.</button></td>
                             <td><button class="botao" onclick="adicionar('%')">%</button></td>
-                            <td><button class="botao" onclick="addOperacao('+')">+</button></td>
+                            <td><button class="operacao" onclick="addOperacao('+')">+</button></td>
                         </tr>
                         <table>
                             <hr>
-                            <tr>
-                                <td><button class="botao2">Dias trabalhados</button></td>
-                                <td><button class="botao2">Adicional Noturno</button></td>
-                                <td><button class="botao2">Opções</button></td>
-                            </tr>
                         </table>
-                        <div>
+                        <div id="bodyhistorico">
                             <div class="content-historico"> 
                                 <h3 id="historico">Histórico</h3>
-                                <button class="exclui-historico"><b>X</b></button>
+                                <button class="exclui-historico" onclick="LimparHistorico()"><b>X</b></button>
                             </div>
                             <ul id="list">
                                 
