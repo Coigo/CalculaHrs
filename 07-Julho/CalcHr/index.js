@@ -1,3 +1,5 @@
+
+
 function addOperacao(operacao) {
   document.getElementById('operacao').value = operacao;
 
@@ -14,10 +16,12 @@ function adicionar(num) {
   if (operacao === '+' || operacao === '-') {
     resultado = mask(primeiroValor) + operacao + mask(segundoValor + num);
     document.getElementById('valor2').value = segundoValor + num;
-  } else if (operacao === '*' || operacao === '/') {
+  } 
+  else if (operacao === '*' || operacao === '/') {
     resultado = mask(primeiroValor) + operacao + (segundoValor + num);
     document.getElementById('valor2').value = segundoValor + num;
-  } else {
+  } 
+  else {
     resultado = mask(primeiroValor + num);
     document.getElementById('valor1').value = primeiroValor + num;
   }
@@ -25,10 +29,13 @@ function adicionar(num) {
   document.getElementById('resultado').value = resultado;
 }
 
+
+
+
 function limpar() {
   const ValoresParaLimpar = ['resultado', 'valor1', 'valor2', 'operacao'];
-  for (valor of ValoresParaLimpar) {
-    document.getElementById(valor).value = '';
+  for (const valor of ValoresParaLimpar) {
+    document.getElementById(valor).value = null;
   }
 }
 
@@ -46,8 +53,8 @@ function convertToTime(minutes) {
 }
 
 function adicionarAoHistorico(valorHistorico) {
-  let ul = document.getElementById('list');
-  let li = document.createElement('li');
+  const ul = document.getElementById('list');
+  const li = document.createElement('li');
   li.textContent = valorHistorico;
   ul.appendChild(li);
 }
@@ -55,14 +62,14 @@ function adicionarAoHistorico(valorHistorico) {
 function calcular() {
   let primeiroValor = document.getElementById('valor1').value;
   let segundoValor = document.getElementById('valor2').value;
-  let operacao = document.getElementById('operacao').value;
+  let operacao = document.getElementById('operacao').value
 
-  let resultado;
 
   let array1 = mask(primeiroValor).split(':');
   let array2 = mask(segundoValor).split(':');
   let tempo1 = parseInt(array1[0]) * 60 + parseInt(array1[1]);
   let tempo2 = parseInt(array2[0]) * 60 + parseInt(array2[1]);
+
 
   const operacoes = {
     '+': function() {
@@ -74,10 +81,12 @@ function calcular() {
       resultado = convertToTime(resultado);
     },
     '*': function() {
-      resultado = Multiplicar_DividirHORA(tempo1, segundoValor, operacao);
+      resultado = tempo1 * parseFloat(segundoValor);
+      resultado = convertToTime(resultado);
     },
     '/': function() {
-      resultado = Multiplicar_DividirHORA(tempo1, segundoValor, operacao);
+      resultado = tempo1 / parseFloat(segundoValor);
+      resultado = convertToTime(resultado);
     }
   };
 
@@ -88,41 +97,19 @@ function calcular() {
   adicionarAoHistorico(texto);
 
   const resultadoFormatado = resultado.split(':').join('')
-  console.log(resultadoFormatado)
   comecarNovoCalculo(resultadoFormatado);
 }
 
 function mask(numero) {
-  numero = numero.toString();
-  if (numero.length === 1) {
-    numero = `00:0${numero}`;
-  } else if (numero.length === 2) {
-    numero = `00:${numero.slice(0, 2)}`;
-  } else if (numero.length === 3) {
-    numero = `0${numero.slice(0, 1)}:${numero.slice(-2)}`;
-  } else if (numero.length > 3) {
-    numero = `${numero.slice(0, numero.length - 2)}:${numero.slice(-2)}`;
-  }
-  return numero;
+
+  const numeroString = numero.toString();
+    const comprimentoMaximo = Math.max(4, numeroString.length);
+    const numeroFormatado = numeroString.padStart(comprimentoMaximo, '0');
+    return numeroFormatado.substr(0, comprimentoMaximo - 2) + ':' + numeroFormatado.substr(comprimentoMaximo - 2);
+
+
 }
 
-function Multiplicar_DividirHORA(totalMinutos, multiplicador, operador) {
-  multiplicador = parseFloat(multiplicador);
-  let resultadoMinutos;
-
-  if (operador === '*') {
-    resultadoMinutos = totalMinutos * multiplicador;
-  } else {
-    resultadoMinutos = totalMinutos / multiplicador;
-  }
-
-  let resultadoHoras = Math.floor(resultadoMinutos / 60);
-  let resultadoMinutosRestantes = Math.round(resultadoMinutos % 60);
-
-  let resultadoFormatado = `${resultadoHoras.toString().padStart(2, '0')}:${resultadoMinutosRestantes.toString().padStart(2, '0')}`;
-
-  return resultadoFormatado;
-}
 
 function comecarNovoCalculo(resultado) {
   const resultadoSalvo = resultado;
@@ -142,43 +129,10 @@ function LiberarVirgula() {
 function LimparHistorico() {
   const Childs = document.getElementsByTagName('li')
   const Historico = document.getElementById('list')
-  while ( Childs.length > 0 ) [
+  while ( Childs.length > 0 ) {
     Historico.removeChild(Childs[0])
-
-  ]
-  
-
+  }
 }
 
-function diasTrabalhados() {
-  let horas = document.getElementById('resultado').value;
-  let HorasTrabalhadasPorDia = '08:00'
 
-  HorasTrabalhadasPorDia = HorasTrabalhadasPorDia.split(":")
-  let minutosPorDia = parseInt(HorasTrabalhadasPorDia[0]) * 60 + parseInt(HorasTrabalhadasPorDia[1])
-
-  horas = horas.split(":")
-  let minutos = parseInt(horas[0]) * 60 + parseInt(horas[1])
-
-  Dias = minutos / minutosPorDia
-  Dias = Dias.toFixed(2)
-
-
-
-
-  adicionarAoHistorico(Dias)
-
-}
-
-function AdicionalNoturno() {
-  let horas = document.getElementById('resultado').value
-  horas = horas.split(":")
-  let minutos = parseInt(horas[0]) * 60 + parseInt(horas[1])
-  
-  horasAdicionadas = minutos / 0.80 /60
-  horasAdicionadas = horasAdicionadas.toFixed(2)
-comecarNovoCalculo(horasAdicionadas)
-
-
-}
 
